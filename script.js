@@ -2,7 +2,7 @@
 
 //document.addEventListener('DOMContentLoaded', () => {
 
-const morpion = ["", "", "", "", "", "", "", "", ""]
+let morpion = ["", "", "", "", "", "", "", "", ""]
 
 const victory = [
     [0, 1, 2],
@@ -21,15 +21,19 @@ turn = 0
 const allCase = []
 
 const onClick = (item) => {
-    console.log("test")
+    const index = item.getAttribute("id")
+    /*console.log("test")*/
     if (turn === 0) {
+        morpion[index] = '╳';
         item.innerText = '╳';
         turn++
     }
     else if (turn >= 1) {
+        morpion[index] = '◯';
         item.innerText = '◯';
         turn--
     }
+    isWinner()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,58 +48,62 @@ document.addEventListener('DOMContentLoaded', () => {
     let caseNine = document.getElementById('8');
 
 
-    allCase.push(caseOne, caseTwo,caseThree,caseFour,caseFive, caseSix,caseSeven, caseEight, caseNine)  
+    allCase.push(caseOne, caseTwo, caseThree, caseFour, caseFive, caseSix, caseSeven, caseEight, caseNine)
 
 
-allCase.forEach(function(item) {
-    item.addEventListener("click", () => onClick(item))
-})
+    allCase.forEach(function(item) {
+        item.addEventListener("click", () => onClick(item))
+    })
 
 
 });
 
+function isWinner() {
+    victory.forEach(casDeVictoire => {
+        const indexNb1 = casDeVictoire[0]
+        const indexNb2 = casDeVictoire[1]
+        const indexNb3 = casDeVictoire[2]
 
-morpion.forEach(possibility => {
-    if(allCase === ""){
-        alert('INSERT COINS')
-        if (possibility[0] === possibility[1] && possibility[1] === possibility[2]) {
-            alert('Vous avez gagné');
+        console.log(morpion[indexNb1],morpion[indexNb2],morpion[indexNb3])
+        if (morpion[indexNb1] !== "" && morpion[indexNb2] !== "" && morpion[indexNb3] !== "") {
+            if (morpion[indexNb1] === morpion[indexNb2] && morpion[indexNb2] === morpion[indexNb3]) {
+                alert('Le gagnant est: ' + morpion[indexNb1]);
+            }
         }
-        else if (possibility[3] === possibility[4] && possibility[4] === possibility[5]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[6] === possibility[7] && possibility[7] === possibility[8]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[0] === possibility[3] && possibility[3] === possibility[6]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[1] === possibility[4] && possibility[4] === possibility[7]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[2] === possibility[5] && possibility[5] === possibility[8]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[2] === possibility[4] && possibility[4] === possibility[6]) {
-            alert('Vous avez gagné');
-        }
-        else if (possibility[0] === possibility[4] && possibility[4] === possibility[8]) {
-            alert('Vous avez gagné');
-        }
-        else(possibility[""] === possibility[""] && possibility[""] === possibility[""])
-        alert('Commencez à jouer');
+
+    })
+}
+
+// if (possibility[0] !== "" && possibility[1] !== "" && possibility[2] !== "")
+//     if (possibility[0] === possibility[1] && possibility[1] === possibility[2]) {
+//         alert('Vous avez gagné');
+//     }
+
+// })
+
+/*    else if (possibility[3] === possibility[4] && possibility[4] === possibility[5]) {
+        alert('Vous avez gagné');
     }
-
-})
-*/
-/*en attente:
-
-function entierAleatoire(max, hasardMorpion)
-{
-    let result = 0
-    for(let i = 0; i < 9; i++) {
-        result += Math.floor(Math.random() * (max - 1 + 1)) + 1;
+    else if (possibility[6] === possibility[7] && possibility[7] === possibility[8]) {
+        alert('Vous avez gagné');
     }
-    return result
+    else if (possibility[0] === possibility[3] && possibility[3] === possibility[6]) {
+        alert('Vous avez gagné');
+    }
+    else if (possibility[1] === possibility[4] && possibility[4] === possibility[7]) {
+        alert('Vous avez gagné');
+    }
+    else if (possibility[2] === possibility[5] && possibility[5] === possibility[8]) {
+        alert('Vous avez gagné');
+    }
+    else if (possibility[2] === possibility[4] && possibility[4] === possibility[6]) {
+        alert('Vous avez gagné');
+    }
+    else if (possibility[0] === possibility[4] && possibility[4] === possibility[8]) {
+        alert('Vous avez gagné');
+    }
+   
+}
+    */
 
-*/
+
