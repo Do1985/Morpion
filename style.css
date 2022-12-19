@@ -1,0 +1,15 @@
+* {
+    box-sizing:border-box
+}
+    
+    
+    #0 ,#1 ,#2 ,#3 ,#4 ,#5 ,#6 ,#7 ,#8 {
+    width: 100px;
+    border: 2px black solid;
+    display:flex;
+
+}
+
+/*.ligne1 ,.ligne2 ,.ligne3 {
+    display: inline-block;
+}*/
